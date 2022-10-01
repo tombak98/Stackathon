@@ -1,6 +1,8 @@
 * {
   margin: 0;
   font-family: 'Noto Sans', sans-serif;
+}
+#root {
   background-color: #f09581;
 }
 @keyframes fadein {
@@ -42,14 +44,33 @@
   flex-direction: column;
   align-items: center;
 }
+#select-container #search-box {
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
+  font-size: 1.5rem;
+}
+#select-container #search-box input {
+  font-size: 1.5rem;
+}
+#select-container #search-box button {
+  border: none;
+  color: white;
+  background-color: #ff6363;
+  font-size: 1.5rem;
+  padding: 5px;
+}
+#select-container #search-box button:hover {
+  background-color: #d82424;
+  transition: 0.25s ease;
+}
 #select-container h1 {
-  margin: 5vh;
+  margin-top: 5vh;
   font-weight: 100;
   color: white;
   font-size: 3rem;
 }
 #select-container #album-list {
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -80,16 +101,22 @@
 #jukebox-container {
   display: flex;
   flex-direction: column;
-  height: 99vh;
+  height: 100vh;
   width: 100%;
   align-items: center;
   justify-content: center;
   animation: fadeinshort 1s;
 }
+#jukebox-container p {
+  font-weight: 100;
+  color: white;
+  font-size: 2rem;
+}
 #jukebox-container #jukebox {
   width: 500px;
   height: 500px;
   z-index: 99;
+  background-color: none;
 }
 #jukebox-container .hidden {
   display: none;
@@ -129,6 +156,7 @@
   z-index: 1;
   height: 100px;
   width: 100px;
+  background-color: none;
 }
 #jukebox-container #coin:hover {
   cursor: pointer;

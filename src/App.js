@@ -10,20 +10,25 @@ import Jukebox from "./components/Jukebox";
 function App() {
   const [albums, setAlbums] = React.useState([]);
   const [album, setAlbum] = React.useState("");
+  const [albumName, setAlbumName] = React.useState('');
   const [songs, setSongs] = React.useState([]);
   const [audio, setAudio] = React.useState("");
-  const [title, setTitle] = React.useState("");
+  const [artist, setArtist] = React.useState("");
+  const [render, setRender] = React.useState(true)
   const albumsCollectionRef = collection(db, "albums")
 
-  React.useEffect(() => {
-    const getAlbums = async () => {
-      // await addDoc(albumsCollectionRef, {artist: 'ATLAS', img:'https://i.scdn.co/image/ab67616d0000b2732a061f8cc383443cbb46adf6', name: "PERSONA5 ORIGINAL SOUNDTRACK"})
-      const data = await getDocs(albumsCollectionRef);
-      setAlbums(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+  const getAlbums = async () => {
+    const data = await getDocs(albumsCollectionRef);
+    setAlbums(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
 
+  React.useEffect(() => {
     getAlbums();
   }, []);
+
+  React.useEffect(()=> {
+    getAlbums();
+  }, [render])
 
   async function searchFunc() {
     const data = await axios.get(
@@ -57,12 +62,12 @@ function App() {
         <Route
           index
           element={
-            <Select albums={albums} setSongs={setSongs} setAlbum={setAlbum} />
+            <Select albums={albums} setSongs={setSongs} setAlbum={setAlbum} setAlbumName={setAlbumName} setArtist={setArtist} setRender={setRender} render={render}/>
           }
         />
         <Route
           path="/jukebox"
-          element={<Jukebox songs={songs} album={album} />}
+          element={<Jukebox songs={songs} album={album} albumName={albumName} artist={artist}/>}
         />
       </Routes>
       {audio !== "" ? (

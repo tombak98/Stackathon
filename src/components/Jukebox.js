@@ -38,7 +38,7 @@ const Jukebox = (props) => {
         anime({
             targets: '.songs-list',
             translateY:[
-                {value: '10vh', duration: 300},
+                {value: '20vh', duration: 300},
                 {value: 0, delay: 1000, duration: 300}
             ],
             easing: 'easeOutCubic',
@@ -99,6 +99,8 @@ const Jukebox = (props) => {
             </div>
             <img id="jukebox" src="/jukebox.png"></img>
             <img onClick={changeSong} id="coin" src='/coin.png'></img>
+            <p>Now Playing...</p>
+            <p>{props.albumName} by {props.artist}</p>
         </div>
         </>
     )

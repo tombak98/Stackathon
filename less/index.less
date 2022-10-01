@@ -1,6 +1,9 @@
 * {
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
+}
+
+#root {
     background-color: rgb(240, 149, 129);
 }
 
@@ -24,14 +27,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    #search-box {
+        margin-top: 2.5vh;
+        margin-bottom: 2.5vh;
+        font-size: 1.5rem;
+
+        input {
+            font-size: 1.5rem;
+        }
+
+        button {
+            border: none;
+            color: white;
+            background-color: rgb(255, 99, 99);
+            font-size: 1.5rem;
+            padding: 5px;
+        }
+
+        button:hover {
+            background-color: rgb(216, 36, 36);
+            transition: 0.25s ease;
+        }
+    }
+
     h1 {
-        margin: 5vh;
+        margin-top: 5vh;
         font-weight: 100;
         color: white;
         font-size: 3rem;
     }
     #album-list {
-        height: 80vh;
+        height: 90vh;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
@@ -68,15 +95,23 @@
 #jukebox-container {
     display: flex;
     flex-direction: column;
-    height: 99vh;
+    height: 100vh;
     width: 100%;
     align-items: center;
     justify-content: center;
     animation: fadeinshort 1s;
+
+    p {
+        font-weight: 100;
+        color: white;
+        font-size: 2rem;
+    }
+
     #jukebox {
         width: 500px;
         height: 500px;
         z-index: 99;
+        background-color: none;
     }
 
     .hidden {
@@ -128,6 +163,7 @@
         z-index: 1;
         height: 100px;
         width: 100px;
+        background-color: none;
     }
 
     #coin:hover {
