@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: rgb(240, 149, 129);
+}
+
+@keyframes fadein {
+    0% {opacity: 0}
+    20% {opacity: 0}
+    30% {opacity: 0}
+    40% {opacity: 0}
+    50% {opacity: 0}
+    60% {opacity: 0}
+    70% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@keyframes fadeinshort {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+#select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        margin: 5vh;
+        font-weight: 100;
+        color: white;
+        font-size: 3rem;
+    }
+    #album-list {
+        height: 80vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+
+        .album-container {
+            height: 400px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeinshort 1s;
+
+            img {
+                max-width: 300px;
+                max-height: 300px;
+            }
+
+            p {
+                font-size: 1.5rem;
+                color: white;
+                font-weight: 100;
+            }
+        }
+
+        .album-container:hover {
+            scale: 1.1;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+    }
+}
+
+#jukebox-container {
+    display: flex;
+    flex-direction: column;
+    height: 99vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 500px;
+        height: 500px;
+    }
+
+    .hidden {
+        display:none;
+    }
+
+    .active {
+        display:flex;
+    }
+
+    .songs-list {
+
+        .song-container {
+
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            animation: fadein 3s;
+
+            p{
+                font-size: 2.5rem;
+                color: white;
+                font-weight: 100;
+            }
+
+            .fa-play-circle {
+                font-size: 3rem;
+            }
+            .fa-pause-circle {
+                font-size: 3rem;
+            }
+        }
+    }
+
+    #album-cover {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        top: 50%;
+        left: 45%;
+        z-index: 999;
+    }
+}
+

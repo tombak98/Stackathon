@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  background-color: #f09581;
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeinshort {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#select-container h1 {
+  margin: 5vh;
+  font-weight: 100;
+  color: white;
+  font-size: 3rem;
+}
+#select-container #album-list {
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+#select-container #album-list .album-container {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeinshort 1s;
+}
+#select-container #album-list .album-container img {
+  max-width: 300px;
+  max-height: 300px;
+}
+#select-container #album-list .album-container p {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 100;
+}
+#select-container #album-list .album-container:hover {
+  scale: 1.1;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+#jukebox-container {
+  display: flex;
+  flex-direction: column;
+  height: 99vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#jukebox-container img {
+  width: 500px;
+  height: 500px;
+}
+#jukebox-container .hidden {
+  display: none;
+}
+#jukebox-container .active {
+  display: flex;
+}
+#jukebox-container .songs-list .song-container {
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  animation: fadein 3s;
+}
+#jukebox-container .songs-list .song-container p {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 100;
+}
+#jukebox-container .songs-list .song-container .fa-play-circle {
+  font-size: 3rem;
+}
+#jukebox-container .songs-list .song-container .fa-pause-circle {
+  font-size: 3rem;
+}
+#jukebox-container #album-cover {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  z-index: 999;
+}
