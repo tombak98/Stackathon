@@ -72,9 +72,11 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    img {
+    animation: fadeinshort 1s;
+    #jukebox {
         width: 500px;
         height: 500px;
+        z-index: 99;
     }
 
     .hidden {
@@ -92,7 +94,8 @@
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
-            animation: fadein 3s;
+            // animation: fadein 3s;
+            z-index: -1;
 
             p{
                 font-size: 2.5rem;
@@ -116,6 +119,25 @@
         top: 50%;
         left: 45%;
         z-index: 999;
+    }
+
+    #coin {
+        position:absolute;
+        bottom: 50%;
+        left: 20%;
+        z-index: 1;
+        height: 100px;
+        width: 100px;
+    }
+
+    #coin:hover {
+        cursor: pointer;
+        scale: 1.1;
+        transition: 0.25s ease;
+    }
+
+    #space-break {
+        font-size: 1.165rem;
     }
 }
 

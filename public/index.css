@@ -84,10 +84,12 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  animation: fadeinshort 1s;
 }
-#jukebox-container img {
+#jukebox-container #jukebox {
   width: 500px;
   height: 500px;
+  z-index: 99;
 }
 #jukebox-container .hidden {
   display: none;
@@ -99,7 +101,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  animation: fadein 3s;
+  z-index: -1;
 }
 #jukebox-container .songs-list .song-container p {
   font-size: 2.5rem;
@@ -119,4 +121,20 @@
   top: 50%;
   left: 45%;
   z-index: 999;
+}
+#jukebox-container #coin {
+  position: absolute;
+  bottom: 50%;
+  left: 20%;
+  z-index: 1;
+  height: 100px;
+  width: 100px;
+}
+#jukebox-container #coin:hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition: 0.25s ease;
+}
+#jukebox-container #space-break {
+  font-size: 1.165rem;
 }
