@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack')
+
 module.exports = {
   mode: "development",
   entry: ["./src/index.js"],
@@ -12,6 +14,11 @@ module.exports = {
       directory: __dirname + "/public",
     },
   },
+  plugins: [
+    new Dotenv({
+      systemvars: true
+    })
+  ],
   module: {
     rules: [
       {

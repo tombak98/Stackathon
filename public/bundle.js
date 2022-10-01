@@ -1767,7 +1767,7 @@ class At {
      * (see https://github.com/axemclion/IndexedDBShim).
      */    static N() {
         var t;
-        return "undefined" != typeof process && "YES" === (null === (t = process.env) || void 0 === t ? void 0 : t.M);
+        return "undefined" != typeof process && "YES" === (null === (t = "MISSING_ENV_VAR") || void 0 === t ? void 0 : t.M);
     }
     /** Helper to get a typed SimpleDbStore from a transaction. */    static O(t, e) {
         return t.store(e);
@@ -25058,12 +25058,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.esm.js");
 /* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ "./node_modules/firebase/firestore/dist/index.esm.js");
+/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.json */ "./config.json");
+
 
  // if (process.env.NODE_ENV !== "production") {
 //     require('../secrets');
 //   }
 
 var firebaseConfig = {
+  // apiKey: config["process.env.FIREBASE"],
   apiKey: "AIzaSyD_LGmgUjnAp2bRy9VLYywIpeySSzLDKg8",
   authDomain: "stackathon-d0ff0.firebaseapp.com",
   projectId: "stackathon-d0ff0",
@@ -66348,6 +66351,17 @@ const unwrap = (value) => reverseTransformCache.get(value);
 
 
 
+
+/***/ }),
+
+/***/ "./config.json":
+/*!*********************!*\
+  !*** ./config.json ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"process.env.FIREBASE":"AIzaSyD_LGmgUjnAp2bRy9VLYywIpeySSzLDKg8"}');
 
 /***/ })
 

@@ -1,12 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
+import config from '../config.json'
+
 
 // if (process.env.NODE_ENV !== "production") {
 //     require('../secrets');
 //   }
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD_LGmgUjnAp2bRy9VLYywIpeySSzLDKg8",
+    // apiKey: config["process.env.FIREBASE"],
+    apiKey: process.env.FIREBASE,
     authDomain: "stackathon-d0ff0.firebaseapp.com",
     projectId: "stackathon-d0ff0",
     storageBucket: "stackathon-d0ff0.appspot.com",
