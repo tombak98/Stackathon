@@ -15,6 +15,7 @@ function App() {
   const [audio, setAudio] = React.useState("");
   const [artist, setArtist] = React.useState("");
   const [render, setRender] = React.useState(true)
+  const [token, setToken] = React.useState('')
   const albumsCollectionRef = collection(db, "albums")
 
   const getAlbums = async () => {
@@ -22,8 +23,20 @@ function App() {
     setAlbums(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  const getToken = async () => {
+    const authParameters = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: 'grant_type=client_credentials&client_id=' + process.env.CLIENT_ID + '&client_secret=' + process.env.CLIENT_SECRET
+    }
+    await fetch('https://accounts.spotify.com/api/token', authParameters).then(result=>result.json()).then(data=>setToken(data.access_token))
+  }
+
   React.useEffect(() => {
     getAlbums();
+    getToken();
   }, []);
 
   React.useEffect(()=> {
@@ -62,7 +75,7 @@ function App() {
         <Route
           index
           element={
-            <Select albums={albums} setSongs={setSongs} setAlbum={setAlbum} setAlbumName={setAlbumName} setArtist={setArtist} setRender={setRender} render={render}/>
+            <Select token={token} albums={albums} setSongs={setSongs} setAlbum={setAlbum} setAlbumName={setAlbumName} setArtist={setArtist} setRender={setRender} render={render}/>
           }
         />
         <Route

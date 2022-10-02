@@ -25899,6 +25899,11 @@ function App() {
       render = _React$useState14[0],
       setRender = _React$useState14[1];
 
+  var _React$useState15 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(''),
+      _React$useState16 = _slicedToArray(_React$useState15, 2),
+      token = _React$useState16[0],
+      setToken = _React$useState16[1];
+
   var albumsCollectionRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(_firebase_config__WEBPACK_IMPORTED_MODULE_2__.db, "albums");
 
   var getAlbums = /*#__PURE__*/function () {
@@ -25932,8 +25937,43 @@ function App() {
     };
   }();
 
+  var getToken = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var authParameters;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              authParameters = {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'grant_type=client_credentials&client_id=' + "9baf419a10b74a04b4930a54202d49fe" + '&client_secret=' + "5222a615a4d34727adf34caabf08674d"
+              };
+              _context2.next = 3;
+              return fetch('https://accounts.spotify.com/api/token', authParameters).then(function (result) {
+                return result.json();
+              }).then(function (data) {
+                return setToken(data.access_token);
+              });
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getToken() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
     getAlbums();
+    getToken();
   }, []);
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
     getAlbums();
@@ -25944,40 +25984,40 @@ function App() {
   }
 
   function _searchFunc() {
-    _searchFunc = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    _searchFunc = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       var data, albumID, songlist;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.next = 2;
+              _context3.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_4___default().get("https://api.spotify.com/v1/search?q=Frederhythm2&type=album&limit=1", {
                 headers: {
-                  Authorization: "Bearer ".concat("BQDJ0OMgBE51_ubDT2Erkdzw3WsZm89rlQchqSEQ1l88IJfy7N9hf9X1mZnM9Dx0nPE3O8EeLiU118xPMAPsVJL9Y1YMd90M4g5KnjYu1QvIQKCrc_z9sZIkrykF-Eor45GjqG-HuhHj3n0qHoozW98DsZnYlF0E7NX0zFPnEfmtGQyrGjy5rPWA-e2wevj46XE")
+                  Authorization: "Bearer ".concat("BQDvnnLdP0L6yryHLKus4g_2drwkccMu3z8f-seg0MFzlbRFoSRzpzLp1E_S9V4dHiMz5g20ZTQ8IDqZ1c_z7C4oX7C9q8Y4tQqV3Cji1z5-ij96ExxjL65uRfJEhiglkHp8VzhSFyDlcYrX_ZGeGjye5xT8CyKut-dLyI100Kg9Jnhv-pgBCtXF7h-hKZU5AxU")
                 }
               });
 
             case 2:
-              data = _context2.sent;
+              data = _context3.sent;
               // console.log(data.data)
               albumID = data.data.albums.items[0].id;
-              _context2.next = 6;
+              _context3.next = 6;
               return axios__WEBPACK_IMPORTED_MODULE_4___default().get("https://api.spotify.com/v1/albums/".concat(albumID, "/tracks"), {
                 headers: {
-                  Authorization: "Bearer ".concat("BQDJ0OMgBE51_ubDT2Erkdzw3WsZm89rlQchqSEQ1l88IJfy7N9hf9X1mZnM9Dx0nPE3O8EeLiU118xPMAPsVJL9Y1YMd90M4g5KnjYu1QvIQKCrc_z9sZIkrykF-Eor45GjqG-HuhHj3n0qHoozW98DsZnYlF0E7NX0zFPnEfmtGQyrGjy5rPWA-e2wevj46XE")
+                  Authorization: "Bearer ".concat("BQDvnnLdP0L6yryHLKus4g_2drwkccMu3z8f-seg0MFzlbRFoSRzpzLp1E_S9V4dHiMz5g20ZTQ8IDqZ1c_z7C4oX7C9q8Y4tQqV3Cji1z5-ij96ExxjL65uRfJEhiglkHp8VzhSFyDlcYrX_ZGeGjye5xT8CyKut-dLyI100Kg9Jnhv-pgBCtXF7h-hKZU5AxU")
                 }
               });
 
             case 6:
-              songlist = _context2.sent;
-              return _context2.abrupt("return", songlist.data.items[3].preview_url);
+              songlist = _context3.sent;
+              return _context3.abrupt("return", songlist.data.items[3].preview_url);
 
             case 8:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
     return _searchFunc.apply(this, arguments);
   }
@@ -25985,6 +26025,7 @@ function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     index: true,
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Select__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      token: token,
       albums: albums,
       setSongs: setSongs,
       setAlbum: setAlbum,
@@ -26429,7 +26470,7 @@ var Select = function Select(props) {
               _context.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("https://api.spotify.com/v1/search?q=".concat(searchTitle, "&type=album&limit=1"), {
                 headers: {
-                  Authorization: "Bearer ".concat("BQDJ0OMgBE51_ubDT2Erkdzw3WsZm89rlQchqSEQ1l88IJfy7N9hf9X1mZnM9Dx0nPE3O8EeLiU118xPMAPsVJL9Y1YMd90M4g5KnjYu1QvIQKCrc_z9sZIkrykF-Eor45GjqG-HuhHj3n0qHoozW98DsZnYlF0E7NX0zFPnEfmtGQyrGjy5rPWA-e2wevj46XE")
+                  Authorization: "Bearer ".concat(props.token)
                 }
               });
 
@@ -26439,7 +26480,7 @@ var Select = function Select(props) {
               _context.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("https://api.spotify.com/v1/albums/".concat(albumID, "/tracks"), {
                 headers: {
-                  Authorization: "Bearer ".concat("BQDJ0OMgBE51_ubDT2Erkdzw3WsZm89rlQchqSEQ1l88IJfy7N9hf9X1mZnM9Dx0nPE3O8EeLiU118xPMAPsVJL9Y1YMd90M4g5KnjYu1QvIQKCrc_z9sZIkrykF-Eor45GjqG-HuhHj3n0qHoozW98DsZnYlF0E7NX0zFPnEfmtGQyrGjy5rPWA-e2wevj46XE")
+                  Authorization: "Bearer ".concat(props.token)
                 }
               });
 
@@ -26483,7 +26524,7 @@ var Select = function Select(props) {
               _context2.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("https://api.spotify.com/v1/search?q=".concat(searchTitle, "&type=album&limit=1"), {
                 headers: {
-                  Authorization: "Bearer ".concat("BQDJ0OMgBE51_ubDT2Erkdzw3WsZm89rlQchqSEQ1l88IJfy7N9hf9X1mZnM9Dx0nPE3O8EeLiU118xPMAPsVJL9Y1YMd90M4g5KnjYu1QvIQKCrc_z9sZIkrykF-Eor45GjqG-HuhHj3n0qHoozW98DsZnYlF0E7NX0zFPnEfmtGQyrGjy5rPWA-e2wevj46XE")
+                  Authorization: "Bearer ".concat(props.token)
                 }
               });
 

@@ -25,13 +25,13 @@ const Select = (props) => {
         let searchTitle = temp.join('%20')
         const data = await axios.get(`https://api.spotify.com/v1/search?q=${searchTitle}&type=album&limit=1`, {
             headers: {
-                Authorization: `Bearer ${process.env.SPOTIFY_KEY}`
+                Authorization: `Bearer ${props.token}`
             }
         })
         const albumID = data.data.albums.items[0].id
         const songlist = await axios.get(`https://api.spotify.com/v1/albums/${albumID}/tracks`, {
             headers: {
-                Authorization: `Bearer ${process.env.SPOTIFY_KEY}`
+                Authorization: `Bearer ${props.token}`
             }
         })
         props.setSongs(songlist.data.items)
@@ -52,7 +52,7 @@ const Select = (props) => {
         let searchTitle = temp.join('%20')
         const data = await axios.get(`https://api.spotify.com/v1/search?q=${searchTitle}&type=album&limit=1`, {
             headers: {
-                Authorization: `Bearer ${process.env.SPOTIFY_KEY}`
+                Authorization: `Bearer ${props.token}`
             }
         })
         await addDoc(albumsCollectionRef, {
